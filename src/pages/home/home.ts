@@ -7,8 +7,19 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  qrdata = null;
+  createdCode = null;
+  scannedCode = null;
+
+  constructor(private barcodeScanner: BarcodeScanner) {
 
   }
-
+  CreateCode() {
+    this.createdCode = this.qrdata;
+  }
+  ScanCode() {
+    this.barcodeScanner.scan().then(barcodeData => {
+      this.scannedCode = barcodeData.text;
+    })
+  }
 }
